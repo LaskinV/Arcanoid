@@ -1,8 +1,9 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "PuckSupply.h"
 #include <iostream>
 using namespace std;
 
+//Количество шаров создаётся от введённого пользователем количества жизней
 
 PuckSupply::PuckSupply(int HP)
 {

@@ -1,6 +1,8 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "BrickPile.h"
 #include <SFML/Graphics.hpp>
+
+//Расстановка блоков
 
 using namespace sf;
 

@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "Puck.h"
 
 
@@ -15,7 +15,8 @@ Puck::~Puck()
 {
 }
 
-void Puck::Ball_up() {
+void Puck::Ball_up()  //Начало движения шара при нажатии на кнопку
+{
 	dx_Puck = 3;
 	dy_Puck = 2;
 	Puck1.move(dx_Puck, 0);

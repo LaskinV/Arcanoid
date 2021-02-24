@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "GameTable.h"
 #include "BrickPile.h"
 #include <vector>
@@ -85,7 +85,7 @@ void GameTable::GameRun() {
 	Sprite background(BG);
 
 	float dx_Paddle = 6;
-	bool pusk = true;
+	bool pusk = true; //Проверка нажатия стрелочки вверх
 
 	int n1 = BP.n;
 
@@ -93,14 +93,16 @@ void GameTable::GameRun() {
 	{
 		Event e;
 		while (app.pollEvent(e)) {
-			if (e.type == Event::Closed) {
+			if (e.type == Event::Closed) 
+			{
 				app.close();
 			}
 		}
 
-		Puck1.move_x();
+		Puck1.move_x(); //Движение по x
 		for (int i = 0; i <= BP.n; i++) {
-			if (isCollide(BP.block[i], Puck1.get())) {
+			if (isCollide(BP.block[i], Puck1.get()))//Проверка на касание по x с блоком
+			{
 				BP.block[i].setPosition(-100, 0);
 				Puck1.dx_Puck = v1.Change_Dir(Puck1.dx_Puck);
 				Score = Score + 100;
@@ -110,9 +112,10 @@ void GameTable::GameRun() {
 			}
 		}
 
-		Puck1.move_y();
+		Puck1.move_y();//Движение по y
 		for (int i = 0; i <= BP.n; i++) {
-			if (isCollide(BP.block[i], Puck1.get())) {
+			if (isCollide(BP.block[i], Puck1.get()))//Проверка на касание по y с блоком
+			{
 				BP.block[i].setPosition(-100, 0);
 				Puck1.dy_Puck = v1.Change_Dir(Puck1.dy_Puck);
 				Score = Score + 100;
@@ -147,13 +150,13 @@ void GameTable::GameRun() {
 
 		if (Keyboard::isKeyPressed(Keyboard::Right)) puddle1.Right();
 		if (Keyboard::isKeyPressed(Keyboard::Left)) puddle1.Left();
-		if (Keyboard::isKeyPressed(Keyboard::Space))
+		if (Keyboard::isKeyPressed(Keyboard::Space)) //проверка на паузу
 		{
 			pause = true;
 			while (pause == true)
 			{
 				Sleep(2000);
-				if (Keyboard::isKeyPressed(Keyboard::P))
+				if (Keyboard::isKeyPressed(Keyboard::P)) //Запуск
 				{
 					pause = false;
 					break;
@@ -183,15 +186,18 @@ void GameTable::GameRun() {
 			}
 		}
 
-		if (b.x > 705) {
+		if (b.x > 705) 
+		{
 			puddle1.break_L();
 		}
 
-		if (b.x < 0) {
+		if (b.x < 0) 
+		{
 			puddle1.break_R();
 		}
 
-		if (isCollide(puddle1.getPaddle(), Puck1.get())) {
+		if (isCollide(puddle1.getPaddle(), Puck1.get())) 
+		{
 			Puck1.dy_Puck = -Puck1.dy_Puck;
 		}
 
