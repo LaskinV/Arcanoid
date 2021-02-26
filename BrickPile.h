@@ -12,7 +12,8 @@ public:
 
 	friend class GameTable;
 
-	Sprite getBlocks() {
+	Sprite getBlocks() 
+	{
 		return *block;
 	}
 

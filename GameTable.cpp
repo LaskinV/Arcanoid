@@ -9,10 +9,11 @@ using namespace sf;
 using namespace std;
 
 int _HP = 0;
+int Score = 0;
 
 GameTable::GameTable()
 {
-	RenderWindow app(VideoMode(800, 600), "Arkanoid!");
+	RenderWindow app(VideoMode(800, 600), "Arcanoid!");
 	menu(app);
 }
 
@@ -63,29 +64,29 @@ void GameTable::menu(RenderWindow& window) {
 }
 
 
-bool isCollide(Sprite s1, Sprite s2) {
+bool isCollide(Sprite s1, Sprite s2)
+{
 	return s1.getGlobalBounds().intersects(s2.getGlobalBounds());
 }
 
 
-void GameTable::GameRun() {
+void GameTable::GameRun(int& _HP) 
+{
 	_HP--;
-	int Score = 0;
 	bool pause = false;
 	PuckSupply PS(_HP);
 	BrickPile BP;
 	Paddle puddle1;
 	Puck Puck1;
 	Velocity v1;
-	RenderWindow app(VideoMode(800, 600), "Arkanoid!");
-	app.setFramerateLimit(60);
+	RenderWindow app(VideoMode(800, 600), "Arcanoid!");
+	app.setFramerateLimit(100);
 	Texture	BG;
 	BG.loadFromFile("C:/Users/laski/source/Arcanoid2/Arcanoid_Project/images/background.jpg");
 
 	Sprite background(BG);
-
 	float dx_Paddle = 6;
-	bool pusk = true; //Проверка нажатия стрелочки вверх
+	bool pusk = true; //Проверка нажатия кнопки
 
 	int n1 = BP.n;
 
@@ -126,13 +127,21 @@ void GameTable::GameRun() {
 
 		Vector2f a = Puck1.get().getPosition();
 
-		if (a.x < 0 || a.x > 770) Puck1.dx_Puck = -Puck1.dx_Puck;
-		if (a.y < 0 || a.y > 560) Puck1.dy_Puck = -Puck1.dy_Puck;
+		if (a.x < 0 || a.x > 770) Puck1.dx_Puck = -Puck1.dx_Puck; //Проверка месстоположения по x
+		if (a.y < 0 || a.y > 560) Puck1.dy_Puck = -Puck1.dy_Puck; //Проверка месстоположения по y
 
 		Vector2f b = puddle1.getPaddle().getPosition();
 
-		if (n1 == 0) { app.close(); GameWin(); }
-		if (a.y > 560)
+		if (n1 == 0) {
+			app.close();
+			_HP++;
+			GameRun(_HP);
+			cout << "Lives: " << _HP;
+			return;
+
+		}
+
+		if (a.y > 560) //Если шар упал
 		{
 			if (_HP < 1)
 			{
@@ -301,32 +310,32 @@ void GameTable::getHP() {
 				isMenu = false;
 				app.close();
 				_HP = 1;
-				GameRun();
+				GameRun(_HP);
 			}
 
 			if (butNum == 2) {
 				isMenu = false;
 				app.close();
 				_HP = 2;
-				GameRun();
+				GameRun(_HP);
 			}
 			if (butNum == 3) {
 				isMenu = false;
 				app.close();
 				_HP = 3;
-				GameRun();
+				GameRun(_HP);
 			}
 			if (butNum == 4) {
 				isMenu = false;
 				app.close();
 				_HP = 4;
-				GameRun();
+				GameRun(_HP);
 			}
 			if (butNum == 5) {
 				isMenu = false;
 				app.close();
 				_HP = 5;
-				GameRun();
+				GameRun(_HP);
 			}
 		}
 

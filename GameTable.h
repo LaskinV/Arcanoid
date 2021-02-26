@@ -15,7 +15,7 @@ public:
 	~GameTable();
 
 	void menu(RenderWindow& window);
-	void GameRun();
+	void GameRun(int& _HP);
 	void GameWin();
 	void GameLose();
 	void getHP();
